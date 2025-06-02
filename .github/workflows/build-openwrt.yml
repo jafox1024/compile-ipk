@@ -90,6 +90,8 @@ jobs:
         # TARGET=$(echo "${{ github.event.inputs.target }}" | sed 's/\//\\\//g')
         # echo "CONFIG_TARGET_${TARGET%/*}=y" > .config
         # echo "CONFIG_TARGET_${TARGET%/*}_${TARGET#*/}=y" >> .config
+        echo "CONFIG_PACKAGE_golang=y" >> .config
+        echo "CONFIG_PACKAGE_libstdcpp=y" >> .config
         
         echo "CONFIG_PACKAGE_plugin=m" >> .config
         make defconfig
