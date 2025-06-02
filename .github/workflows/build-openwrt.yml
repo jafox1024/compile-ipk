@@ -75,8 +75,13 @@ jobs:
     - name: 更新 feeds
       working-directory: openwrt
       run: |
+        echo "src-git golang https://github.com/openwrt/packages.git;openwrt-24.10" >> feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        ./scripts/feeds install golang
+        # 安装 golang-package.mk
+        mkdir -p package/lang/golang
+        cp feeds/golang/lang/golang/golang-package.mk package/lang/golang/
 
     - name: 检查工作目录
       working-directory: openwrt
